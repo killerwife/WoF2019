@@ -24,6 +24,7 @@ import java.util.Random;
 public class Hra  {
     private Parser parser;
     private Mapa mapa;
+    private Hrac hrac;
     //private Miestnost aktualnaMiestnost;
     
     /**
@@ -32,6 +33,7 @@ public class Hra  {
     public Hra() {
         this.mapa = new Mapa();
         this.parser = new Parser();
+        this.hrac = new Hrac(this, mapa.getMiestnost("terasa"));
     }
 
     /**
@@ -68,9 +70,9 @@ public class Hra  {
         System.out.println("World of FRI je nova, neuveritelne nudna adventura.");
         System.out.println("Zadaj 'pomoc' ak potrebujes pomoc.");
         System.out.println();
-        System.out.println("Teraz si v miestnosti " + this.mapa.getAktualnaMiestnost().getPopis());
+        System.out.println("Teraz si v miestnosti " + this.hrac.getAktualnaMiestnost().getPopis());
         System.out.print("Vychody: ");
-        this.mapa.getAktualnaMiestnost().vypisVychody();
+        this.hrac.getAktualnaMiestnost().vypisVychody();
         System.out.println();
     }
 
@@ -135,13 +137,13 @@ public class Hra  {
         String nazovMiestnosti = prikaz.getParameter();
 
         // Pokus o opustenie aktualnej miestnosti danym vychodom.
-        Miestnost novaMiestnost = this.mapa.getAktualnaMiestnost().getMiestnost(nazovMiestnosti);
+        Miestnost novaMiestnost = this.hrac.getAktualnaMiestnost().getMiestnost(nazovMiestnosti);
         
 
         if (novaMiestnost == null) {
             System.out.println("Tam nie je vychod!");
         } else {
-            this.mapa.chodDoMiestnosti(novaMiestnost);
+            this.hrac.chodDoMiestnosti(novaMiestnost);
         }
     }
 
@@ -170,6 +172,12 @@ public class Hra  {
         }
 
         String nazovMiestnosti = prikaz.getParameter();
-        this.mapa.teleportujDoMiestnosti(nazovMiestnosti);
+        this.hrac.teleportujDoMiestnosti(nazovMiestnosti);
     }
+
+    public Mapa getMapa() {
+        return mapa;
+    }
+    
+    
 }

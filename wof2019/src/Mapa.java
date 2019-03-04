@@ -13,35 +13,11 @@ import java.util.Random;
  * @author marek13
  */
 public class Mapa {
-    private Miestnost aktualnaMiestnost;
     private HashMap<String, Miestnost> miestnosti;
     
     public Mapa() {
         this.miestnosti = new HashMap<>();
         this.vytvorMiestnosti();
-    }
-
-    public Miestnost getAktualnaMiestnost() {
-        return aktualnaMiestnost;
-    }
-
-    public void chodDoMiestnosti(Miestnost aktualnaMiestnost) {
-        this.aktualnaMiestnost = aktualnaMiestnost;
-        System.out.println("Teraz si v miestnosti " + this.aktualnaMiestnost.getNazov() + ": " + this.aktualnaMiestnost.getPopis());
-        System.out.print("Vychody: ");
-        this.aktualnaMiestnost.vypisVychody();
-        System.out.println();
-    }
-    
-    public boolean teleportujDoMiestnosti(String nazov) {
-        Miestnost miestnost = miestnosti.get(nazov);
-        if (miestnost == null) return false;
-        this.aktualnaMiestnost = miestnost;
-        System.out.println("Teraz si v miestnosti " + this.aktualnaMiestnost.getNazov() + ": " + this.aktualnaMiestnost.getPopis());
-        System.out.print("Vychody: ");
-        this.aktualnaMiestnost.vypisVychody();
-        System.out.println();
-        return true;
     }
     
     private void vytvorMiestnosti() {
@@ -126,70 +102,9 @@ public class Mapa {
         // vychod kancel
         kancelaria.nastavVychod(labak);
         // tajomna komnata
-        for (int i = 0; i < 14; ++i) {
-            Random rand = new Random();
-            if (rand.nextInt(10) == 5) {
-                switch (i) {
-                    case 0:
-                        tajKomnata.nastavVychod(terasa);
-                        terasa.nastavVychod(tajKomnata);
-                        break;
-                    case 1:
-                        tajKomnata.nastavVychod(aula);
-                        aula.nastavVychod(tajKomnata);
-                        break;
-                    case 2:
-                        tajKomnata.nastavVychod(labak);
-                        labak.nastavVychod(tajKomnata);
-                        break;
-                    case 3:
-                        tajKomnata.nastavVychod(kancelaria);
-                        kancelaria.nastavVychod(tajKomnata);
-                        break;
-                    case 4:
-                        tajKomnata.nastavVychod(chill);
-                        chill.nastavVychod(tajKomnata);
-                        break;
-                    case 5:
-                        tajKomnata.nastavVychod(chodba);
-                        chodba.nastavVychod(tajKomnata);
-                        break;
-                    case 6:
-                        tajKomnata.nastavVychod(vratnica);
-                        vratnica.nastavVychod(tajKomnata);
-                        break;
-                    case 7:
-                        tajKomnata.nastavVychod(bufet);
-                        bufet.nastavVychod(tajKomnata);
-                        break;
-                    case 8:
-                        tajKomnata.nastavVychod(wc);
-                        wc.nastavVychod(tajKomnata);
-                        break;
-                    case 9:
-                        tajKomnata.nastavVychod(atrium);
-                        atrium.nastavVychod(tajKomnata);
-                        break;
-                    case 10:
-                        tajKomnata.nastavVychod(atomKryt);
-                        atomKryt.nastavVychod(tajKomnata);
-                        break;
-                    case 11:
-                        tajKomnata.nastavVychod(kumbal);
-                        kumbal.nastavVychod(tajKomnata);
-                        break;
-                    case 12:
-                        tajKomnata.nastavVychod(schody);
-                        schody.nastavVychod(tajKomnata);
-                        break;
-                    case 13:
-                        tajKomnata.nastavVychod(vytah);
-                        vytah.nastavVychod(tajKomnata);
-                        break;
-                }
-            }
-        }
-
-        this.aktualnaMiestnost = vratnica;  // startovacia miestnost hry
+    }
+    
+    public Miestnost getMiestnost(String nazov) {
+        return this.miestnosti.get(nazov);
     }
 }
