@@ -1,3 +1,6 @@
+
+import java.util.Random;
+
 /**
  * Trieda Hra je hlavna trieda aplikacie "World of FRI".
  * "World of FRI" je velmi jednoducha textova hra - adventura. 
@@ -20,44 +23,20 @@
  
 public class Hra  {
     private Parser parser;
-    private Miestnost aktualnaMiestnost;
+    private Mapa mapa;
+    //private Miestnost aktualnaMiestnost;
     
     /**
      * Vytvori a inicializuje hru.
      */
     public Hra() {
-        this.vytvorMiestnosti();
+        this.mapa = new Mapa();
         this.parser = new Parser();
     }
 
     /**
      * Vytvori mapu hry - miestnosti.
      */
-    private void vytvorMiestnosti() {
-        // vytvorenie miestnosti
-        Miestnost terasa = new Miestnost("terasa", "terasa - hlavny vstup na fakultu");
-        Miestnost aula = new Miestnost("aula", "aula");
-        Miestnost bufet = new Miestnost("bufet", "ham ham");
-        Miestnost labak = new Miestnost("labak", "pocitacove laboratorium");
-        Miestnost kancelaria = new Miestnost("kancelaria", "kancelaria spravcu pocitacoveho laboratoria");
-        
-        // inicializacia miestnosti = nastavenie vychodov
-        // vychody terasy
-        terasa.nastavVychod(aula);
-        terasa.nastavVychod(labak);
-        terasa.nastavVychod(bufet);
-        // vychody auly
-        aula.nastavVychod(terasa);
-        // vychody bufetu
-        bufet.nastavVychod(terasa);
-        // vychody labaku
-        labak.nastavVychod(terasa);
-        labak.nastavVychod(kancelaria);
-        // vychody kancelarie
-        kancelaria.nastavVychod(labak);       
-
-        this.aktualnaMiestnost = terasa;  // startovacia miestnost hry
-    }
 
     /**
      *  Hlavna metoda hry.
@@ -89,9 +68,9 @@ public class Hra  {
         System.out.println("World of FRI je nova, neuveritelne nudna adventura.");
         System.out.println("Zadaj 'pomoc' ak potrebujes pomoc.");
         System.out.println();
-        System.out.println("Teraz si v miestnosti " + this.aktualnaMiestnost.getPopis());
+        System.out.println("Teraz si v miestnosti " + this.mapa.getAktualnaMiestnost().getPopis());
         System.out.print("Vychody: ");
-        this.aktualnaMiestnost.vypisVychody();
+        this.mapa.getAktualnaMiestnost().vypisVychody();
         System.out.println();
     }
 
@@ -120,6 +99,9 @@ public class Hra  {
                 return false;
             case "ukonci":
                 return this.ukonciHru(prikaz);
+            case "teleport":
+                this.teleport(prikaz);
+                return false;
             default:
                 return false;
         }
@@ -153,15 +135,13 @@ public class Hra  {
         String nazovMiestnosti = prikaz.getParameter();
 
         // Pokus o opustenie aktualnej miestnosti danym vychodom.
-        Miestnost novaMiestnost = this.aktualnaMiestnost.getMiestnost(nazovMiestnosti);
+        Miestnost novaMiestnost = this.mapa.getAktualnaMiestnost().getMiestnost(nazovMiestnosti);
+        
+
         if (novaMiestnost == null) {
             System.out.println("Tam nie je vychod!");
         } else {
-            this.aktualnaMiestnost = novaMiestnost;
-            System.out.println("Teraz si v miestnosti " + this.aktualnaMiestnost.getPopis());
-            System.out.print("Vychody: ");
-            this.aktualnaMiestnost.vypisVychody();
-            System.out.println();
+            this.mapa.chodDoMiestnosti(novaMiestnost);
         }
     }
 
@@ -180,5 +160,16 @@ public class Hra  {
         } else {
             return true;
         }
+    }
+    
+    private void teleport(Prikaz prikaz) {
+        if (!prikaz.maParameter()) {
+            // ak prikaz nema parameter - druhe slovo - nevedno kam ist
+            System.out.println("TP kam?");
+            return;
+        }
+
+        String nazovMiestnosti = prikaz.getParameter();
+        this.mapa.teleportujDoMiestnosti(nazovMiestnosti);
     }
 }
