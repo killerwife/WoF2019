@@ -2,6 +2,7 @@ package Hra;
 
 
 import Dvere.Dvere;
+import Dvere.ZamykatelneDvere;
 import Itemy.IItemy;
 import Itemy.Kluc;
 import java.util.HashMap;
@@ -117,7 +118,8 @@ public class Mapa {
         chill.nastavVychod(chillLabak);
         //vychod labak
         labak.nastavVychod(terasaLabak);
-        Dvere labakKancelaria= new Dvere(labak, kancelaria);
+        ZamykatelneDvere labakKancelaria =
+                new ZamykatelneDvere(labak, kancelaria, "kanca");
         labak.nastavVychod(labakKancelaria);
         labak.nastavVychod(chodbaChill);
         labak.nastavVychod(chillLabak);

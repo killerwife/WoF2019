@@ -1,6 +1,8 @@
 package Hra;
 
 
+import Dvere.IDvere;
+import Dvere.ZamykatelneDvere;
 import Hrac.Hrac;
 import Itemy.IItemy;
 import java.util.Random;
@@ -117,6 +119,9 @@ public class Hra  {
             case "vypisInventar":
                 this.vypisInventar(prikaz);
                 return false;
+            case "pouziKluc":
+                this.pouziKluc(prikaz);
+                return false;
             default:
                 return false;
         }
@@ -149,9 +154,18 @@ public class Hra  {
 
         String nazovMiestnosti = prikaz.getParameter();
 
-        // Pokus o opustenie aktualnej miestnosti danym vychodom.
-        Miestnost novaMiestnost = this.hrac.getAktualnaMiestnost().getMiestnost(nazovMiestnosti);
+        IDvere dvere = this.hrac.getAktualnaMiestnost().getDvere(nazovMiestnosti);
+        if (dvere == null) {
+            System.out.println("Dvere sa nenasli.");
+            return;
+        }
         
+        if (!dvere.skusPrejst(hrac)) {
+            System.out.println("Nepodarilo sa prejst cez dvere.");
+            return;
+        }
+        // Pokus o opustenie aktualnej miestnosti danym vychodom.
+        Miestnost novaMiestnost = dvere.dajDruhuMiestnost(hrac.getAktualnaMiestnost());
 
         if (novaMiestnost == null) {
             System.out.println("Tam nie je vychod!");
@@ -214,5 +228,28 @@ public class Hra  {
 
     private void vypisInventar(Prikaz prikaz) {
         this.hrac.getInventar().vypisItemy();
+    }
+    
+    private void pouziKluc(Prikaz prikaz) {
+        if (!prikaz.maParameter()) {
+            // ak prikaz nema parameter - druhe slovo - nevedno kam ist
+            System.out.println("Nenapisal si meno dveri.");
+            return;
+        }
+        
+        String nazovDveri = prikaz.getParameter();
+        
+        IDvere dvere = this.hrac.getAktualnaMiestnost().getDvere(nazovDveri);
+        if (dvere == null) {
+            System.out.println("Dvere sa nenasli.");
+            return;
+        }
+        
+        if (dvere instanceof ZamykatelneDvere) {
+            ((ZamykatelneDvere) dvere).pouziKluc(hrac);
+        } else {
+            System.out.println("Dvere nie su zamykatelne.");
+            return;
+        }
     }
 }

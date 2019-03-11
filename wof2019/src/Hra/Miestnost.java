@@ -65,8 +65,12 @@ public class Miestnost {
             System.out.print(key + " ");
         }      
     }
+    
+    public IDvere getDvere(String nazovDveri) {
+        return this.vychody.get(nazovDveri);
+    }
 
-    Miestnost getMiestnost(String nazovMiestnosti) {
+    public Miestnost getMiestnost(String nazovMiestnosti) {
         return this.vychody.get(nazovMiestnosti).dajDruhuMiestnost(this);
     }
     
