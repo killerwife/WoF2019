@@ -64,49 +64,65 @@ public class Mapa {
         Dvere vratnicaChodba = new Dvere(vratnica, chodba);
         vratnica.nastavVychod(vratnicaChodba);
         //chodba
-        chodba.nastavVychod(kumbal);
+        Dvere kumbalChodba = new Dvere(chodba, kumbal);
+        chodba.nastavVychod(kumbalChodba);
         chodba.nastavVychod(vratnicaChodba);
-        chodba.nastavVychod(chill);
-        chodba.nastavVychod(vytah);
-        chodba.nastavVychod(schody);
-        chodba.nastavVychod(bufet);
+        Dvere chodbaChill = new Dvere(chodba, chill);
+        chodba.nastavVychod(chodbaChill);
+        Dvere chodbaVytah = new Dvere(chodba, vytah);
+        chodba.nastavVychod(chodbaVytah);
+        Dvere chodbaSchody = new Dvere(chodba, vytah);
+        chodba.nastavVychod(chodbaSchody);
+        Dvere chodbaBufet = new Dvere(chodba, bufet);
+        chodba.nastavVychod(chodbaBufet);
         //kumbal
-        kumbal.nastavVychod(chodba);
+        kumbal.nastavVychod(kumbalChodba);
         //vytah
-        vytah.nastavVychod(chodba);
-        vytah.nastavVychod(atrium);
+        vytah.nastavVychod(chodbaVytah);
+        Dvere vytahAtrium = new Dvere(vytah, atrium);
+        vytah.nastavVychod(vytahAtrium);
         //schody
-        schody.nastavVychod(chodba);
-        schody.nastavVychod(atrium);
+        schody.nastavVychod(chodbaSchody);
+        Dvere schodyAtrium = new Dvere(schody, atrium);
+        schody.nastavVychod(schodyAtrium);
         //atrium
-        atrium.nastavVychod(schody);
-        atrium.nastavVychod(vytah);
-        atrium.nastavVychod(bufet);
-        atrium.nastavVychod(atomKryt);
+        atrium.nastavVychod(schodyAtrium);
+        atrium.nastavVychod(vytahAtrium);
+        Dvere atriumBufet = new Dvere(atrium, bufet);
+        atrium.nastavVychod(atriumBufet);
+        Dvere atriumAtomKryt = new Dvere(atrium, bufet);
+        atrium.nastavVychod(atriumAtomKryt);
         //atom kryt
-        atomKryt.nastavVychod(atrium);
+        atomKryt.nastavVychod(atriumAtomKryt);
         //vychod terasa
-        terasa.nastavVychod(aula);
-        terasa.nastavVychod(labak);
-        terasa.nastavVychod(bufet);
+        Dvere terasaAula = new Dvere(terasa, aula);
+        terasa.nastavVychod(terasaAula);
+        Dvere terasaLabak = new Dvere(terasa, labak);
+        terasa.nastavVychod(terasaLabak);
+        Dvere terasaBufet= new Dvere(terasa, bufet);
+        terasa.nastavVychod(terasaBufet);
         //vychod auly
-        aula.nastavVychod(terasa);
+        aula.nastavVychod(terasaAula);
         //vychod bufet
-        bufet.nastavVychod(terasa);
-        bufet.nastavVychod(atrium);
-        bufet.nastavVychod(wc);
-        bufet.nastavVychod(chodba);
+        bufet.nastavVychod(terasaBufet);
+        bufet.nastavVychod(atriumBufet);
+        Dvere bufetWC= new Dvere(bufet, wc);
+        bufet.nastavVychod(bufetWC);
+        bufet.nastavVychod(chodbaBufet);
         //wc
-        wc.nastavVychod(bufet);
+        wc.nastavVychod(bufetWC);
         //chill
-        chill.nastavVychod(chodba);
-        chill.nastavVychod(labak);
+        chill.nastavVychod(chodbaChill);
+        Dvere chillLabak= new Dvere(chill, labak);
+        chill.nastavVychod(chillLabak);
         //vychod labak
-        labak.nastavVychod(terasa);
-        labak.nastavVychod(kancelaria);
-        labak.nastavVychod(chill);
+        labak.nastavVychod(terasaLabak);
+        Dvere labakKancelaria= new Dvere(labak, kancelaria);
+        labak.nastavVychod(labakKancelaria);
+        labak.nastavVychod(chodbaChill);
+        labak.nastavVychod(chillLabak);
         // vychod kancel
-        kancelaria.nastavVychod(labak);
+        kancelaria.nastavVychod(labakKancelaria);
         // tajomna komnata
         
         // itemy
