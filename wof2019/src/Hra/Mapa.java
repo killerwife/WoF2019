@@ -1,4 +1,9 @@
+package Hra;
 
+
+import Dvere.Dvere;
+import Itemy.IItemy;
+import Itemy.Kluc;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -56,10 +61,11 @@ public class Mapa {
         
         // inicializacia miestnosti = nastavenie vychodov
         //vratnica
-        vratnica.nastavVychod(chodba);
+        Dvere vratnicaChodba = new Dvere(vratnica, chodba);
+        vratnica.nastavVychod(vratnicaChodba);
         //chodba
         chodba.nastavVychod(kumbal);
-        chodba.nastavVychod(vratnica);
+        chodba.nastavVychod(vratnicaChodba);
         chodba.nastavVychod(chill);
         chodba.nastavVychod(vytah);
         chodba.nastavVychod(schody);
@@ -102,6 +108,12 @@ public class Mapa {
         // vychod kancel
         kancelaria.nastavVychod(labak);
         // tajomna komnata
+        
+        // itemy
+        HashMap<String, IItemy> itemyVratnice = new HashMap<>();
+        IItemy kluc = new Kluc("kanca", "Kluc od kancelarie", 1);
+        itemyVratnice.put(kluc.getNazov(), kluc);
+        vratnica.pridajItemy(itemyVratnice);
     }
     
     public Miestnost getMiestnost(String nazov) {

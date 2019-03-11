@@ -1,4 +1,8 @@
+package Hra;
 
+
+import Dvere.IDvere;
+import Itemy.IItemy;
 import java.util.HashMap;
 
 /**
@@ -16,7 +20,8 @@ import java.util.HashMap;
 public class Miestnost {
     private String nazovMiestnosti;
     private String popisMiestnosti;
-    HashMap<String, Miestnost> vychody;
+    private HashMap<String, IDvere> vychody;
+    private HashMap<String, IItemy> itemy;
     /**
      * Vytvori miestnost popis ktorej je v parametrom.
      * Po vytvoreni miestnost nema ziadne vychody. Popis miesnost strucne 
@@ -28,6 +33,7 @@ public class Miestnost {
         this.nazovMiestnosti = nazov;
         this.popisMiestnosti = popis;
         this.vychody = new HashMap<>();
+        this.itemy = null;
     }
 
     /**
@@ -39,8 +45,8 @@ public class Miestnost {
      * @param juh miestnost smerom na juh.
      * @param zapad miestnost smerom na zapad.
      */
-    public void nastavVychod(Miestnost novaMiestnost) {
-        this.vychody.put(novaMiestnost.nazovMiestnosti, novaMiestnost);
+    public void nastavVychod(IDvere dvere) {
+        this.vychody.put(dvere.dajDruhuMiestnost(this).nazovMiestnosti, dvere);
     }
 
     /**
@@ -56,15 +62,28 @@ public class Miestnost {
     
     public void vypisVychody() {
         for (String key: vychody.keySet()) {
-        System.out.print(key + " ");
-        }
-            
-            
-            
-        
+            System.out.print(key + " ");
+        }      
     }
 
     Miestnost getMiestnost(String nazovMiestnosti) {
-        return this.vychody.get(nazovMiestnosti);
+        return this.vychody.get(nazovMiestnosti).dajDruhuMiestnost(this);
+    }
+    
+    public void pridajItemy(HashMap<String, IItemy> itemy) {
+        this.itemy = itemy;
+    }
+    
+    public void vypisItemy() {
+        if (this.itemy == null)
+            return;
+        for (IItemy item : this.itemy.values()) {
+            System.out.print(item.getNazov() + " ");
+        }
+        System.out.println("");
+    }
+    
+    public IItemy zoberItem(String nazov) {
+        return this.itemy != null ? this.itemy.remove(nazov) : null;
     }
 }

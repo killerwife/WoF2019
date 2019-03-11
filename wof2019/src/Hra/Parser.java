@@ -1,3 +1,5 @@
+package Hra;
+
 import java.util.Scanner;
 
 /**

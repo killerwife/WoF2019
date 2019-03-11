@@ -1,4 +1,8 @@
+package Hra;
 
+
+import Hrac.Hrac;
+import Itemy.IItemy;
 import java.util.Random;
 
 /**
@@ -104,6 +108,15 @@ public class Hra  {
             case "teleport":
                 this.teleport(prikaz);
                 return false;
+            case "pozri":
+                this.pozri(prikaz);
+                return false;
+            case "zober":
+                this.zober(prikaz);
+                return false;
+            case "vypisInventar":
+                this.vypisInventar(prikaz);
+                return false;
             default:
                 return false;
         }
@@ -119,7 +132,7 @@ public class Hra  {
         System.out.println("Zabludil si. Si sam. Tulas sa po fakulte.");
         System.out.println();
         System.out.println("Mozes pouzit tieto prikazy:");
-        System.out.println("   chod ukonci pomoc");
+        NazvyPrikazov.vypisPrikazy();
     }
 
     /** 
@@ -178,6 +191,28 @@ public class Hra  {
     public Mapa getMapa() {
         return mapa;
     }
+
+    private void pozri(Prikaz prikaz) {
+        this.hrac.getAktualnaMiestnost().vypisItemy();
+    }
     
-    
+    private void zober(Prikaz prikaz) {
+        if (!prikaz.maParameter()) {
+            // ak prikaz nema parameter - druhe slovo - nevedno kam ist
+            System.out.println("Nenapisal si nazov itemu.");
+            return;
+        }
+
+        IItemy item = this.hrac.getAktualnaMiestnost().zoberItem(prikaz.getParameter());
+        if (item == null) {
+            System.out.println("Item sa nenasiel.");
+            return;
+        }
+        
+        this.hrac.getInventar().vlozItem(item);
+    }
+
+    private void vypisInventar(Prikaz prikaz) {
+        this.hrac.getInventar().vypisItemy();
+    }
 }

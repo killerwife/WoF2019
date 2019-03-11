@@ -1,3 +1,8 @@
+package Hrac;
+
+import Hra.Hra;
+import Hra.Miestnost;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -41,4 +46,8 @@ public class Hrac {
         System.out.println();
         return true;
     }
+
+    public Inventar getInventar() {
+        return inventar;
+    }   
 }

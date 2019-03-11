@@ -1,3 +1,5 @@
+package Hra;
+
 /**
  * Trieda NazvyPrikazov udrzuje zoznam nazvov platnych prikazov hry. 
  * Za ulohu ma rozpoznavat platne prikazy.
@@ -11,7 +13,7 @@
 public class NazvyPrikazov {
     // konstantne pole nazvov prikazov
     private static final String[] PLATNE_PRIKAZY = {
-        "chod", "ukonci", "pomoc", "teleport"
+        "chod", "ukonci", "pomoc", "teleport", "pozri", "zober", "vypisInventar"
     };
 
     /**
@@ -28,5 +30,12 @@ public class NazvyPrikazov {
         }
         // ak algoritmus dosiahne tento bod, parameter nie je platny prikaz
         return false;
+    }
+    
+    public static void vypisPrikazy() {
+        for (String string : PLATNE_PRIKAZY) {
+            System.out.print(string + " ");
+        }
+        System.out.println("");
     }
 }

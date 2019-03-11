@@ -1,3 +1,5 @@
+package Hra;
+
 /**
  * Hlavna trieda hry WoF s metodou main - spustanie v NB
  * 
