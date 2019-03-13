@@ -17,12 +17,16 @@ public class ZamykatelneDvere implements IDvere {
     private Miestnost druha;
     private String nazovKluca;
     private boolean isOtvorene;
+    private String popis;
+    private int silaMaterialu;
 
-    public ZamykatelneDvere(Miestnost prva, Miestnost druha, String nazovKluca) {
+    public ZamykatelneDvere(Miestnost prva, Miestnost druha, String nazovKluca, String popis, int silaMaterialu) {
         this.prva = prva;
         this.druha = druha;
         this.nazovKluca = nazovKluca;
         this.isOtvorene = false;
+        this.popis = popis;
+        this.silaMaterialu = silaMaterialu;
     }
     
     @Override
@@ -52,5 +56,20 @@ public class ZamykatelneDvere implements IDvere {
         else {
             System.out.println("Nebol najdeny spravny kluc.");
         }            
+    }
+
+    @Override
+    public String getNazov() {
+        return "Zamykatelne Dvere";
+    }
+
+    @Override
+    public String getPopis() {
+        return popis;
+    }
+
+    @Override
+    public int getSilaMaterialu() {
+        return silaMaterialu;
     }
 }

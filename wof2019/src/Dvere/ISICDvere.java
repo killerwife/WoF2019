@@ -12,15 +12,15 @@ import Hrac.Hrac;
  *
  * @author kajanek6
  */
-public class Dvere implements IDvere {
-    private Miestnost prva;
-    private Miestnost druha;
+public class ISICDvere implements IDvere {
+    private Miestnost gula;
+    private Miestnost klucka;
     private String popis;
     private int silaMaterialu;
 
-    public Dvere(Miestnost prva, Miestnost druha, String popis, int silaMaterialu) {
-        this.prva = prva;
-        this.druha = druha;
+    public ISICDvere(Miestnost gula, Miestnost klucka, String popis, int silaMaterialu) {
+        this.gula = gula;
+        this.klucka = klucka;
         this.popis = popis;
         this.silaMaterialu = silaMaterialu;
     }
@@ -32,17 +32,19 @@ public class Dvere implements IDvere {
 
     @Override
     public boolean skusPrejst(Hrac hrac) {
-        return isOtvorene();
-    }    
-
+        if (hrac.getAktualnaMiestnost() == gula)
+            return hrac.getInventar().getItem("ISIC") != null;
+        else return true;
+    }
+    
     @Override
     public Miestnost dajDruhuMiestnost(Miestnost prva) {
-        return this.prva == prva ? this.druha : this.prva;
+        return this.gula == prva ? this.klucka : this.gula;
     }
-
+    
     @Override
     public String getNazov() {
-        return "Dvere";
+        return "ISIC Dvere";
     }
 
     @Override

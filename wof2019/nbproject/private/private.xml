@@ -3,10 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/GitHubCode/phd/WoF2019/wof2019/src/Hra/Miestnost.java</file>
-            <file>file:/C:/GitHubCode/phd/WoF2019/wof2019/src/Itemy/Kluc.java</file>
-            <file>file:/C:/GitHubCode/phd/WoF2019/wof2019/src/Itemy/IItemy.java</file>
-            <file>file:/C:/GitHubCode/phd/WoF2019/wof2019/src/Hra/Mapa.java</file>
+            <file>file:/C:/Users/kajanek6/Documents/WoF2019/wof2019/src/Hrac/Hrac.java</file>
+            <file>file:/C:/Users/kajanek6/Documents/WoF2019/wof2019/src/Hrac/Inventar.java</file>
+            <file>file:/C:/Users/kajanek6/Documents/WoF2019/wof2019/src/Dvere/Dvere.java</file>
+            <file>file:/C:/Users/kajanek6/Documents/WoF2019/wof2019/src/Dvere/ISICDvere.java</file>
+            <file>file:/C:/Users/kajanek6/Documents/WoF2019/wof2019/src/Itemy/ISIC.java</file>
+            <file>file:/C:/Users/kajanek6/Documents/WoF2019/wof2019/src/Hra/NazvyPrikazov.java</file>
+            <file>file:/C:/Users/kajanek6/Documents/WoF2019/wof2019/src/Hra/Hra.java</file>
+            <file>file:/C:/Users/kajanek6/Documents/WoF2019/wof2019/src/Hra/Miestnost.java</file>
+            <file>file:/C:/Users/kajanek6/Documents/WoF2019/wof2019/src/Dvere/ZamykatelneDvere.java</file>
+            <file>file:/C:/Users/kajanek6/Documents/WoF2019/wof2019/src/Hra/Prikaz.java</file>
+            <file>file:/C:/Users/kajanek6/Documents/WoF2019/wof2019/src/Hra/Mapa.java</file>
+            <file>file:/C:/Users/kajanek6/Documents/WoF2019/wof2019/src/Itemy/IItemy.java</file>
+            <file>file:/C:/Users/kajanek6/Documents/WoF2019/wof2019/src/Dvere/IDvere.java</file>
+            <file>file:/C:/Users/kajanek6/Documents/WoF2019/wof2019/src/Itemy/Kluc.java</file>
         </group>
     </open-files>
 </project-private>

@@ -2,8 +2,11 @@ package Hra;
 
 
 import Dvere.Dvere;
+import Dvere.IDvere;
+import Dvere.ISICDvere;
 import Dvere.ZamykatelneDvere;
 import Itemy.IItemy;
+import Itemy.ISIC;
 import Itemy.Kluc;
 import java.util.HashMap;
 import java.util.Random;
@@ -62,64 +65,64 @@ public class Mapa {
         
         // inicializacia miestnosti = nastavenie vychodov
         //vratnica
-        Dvere vratnicaChodba = new Dvere(vratnica, chodba);
+        Dvere vratnicaChodba = new Dvere(vratnica, chodba, "", 0);
         vratnica.nastavVychod(vratnicaChodba);
         //chodba
-        Dvere kumbalChodba = new Dvere(chodba, kumbal);
+        Dvere kumbalChodba = new Dvere(chodba, kumbal, "", 0);
         chodba.nastavVychod(kumbalChodba);
         chodba.nastavVychod(vratnicaChodba);
-        Dvere chodbaChill = new Dvere(chodba, chill);
+        Dvere chodbaChill = new Dvere(chodba, chill, "", 0);
         chodba.nastavVychod(chodbaChill);
-        Dvere chodbaVytah = new Dvere(chodba, vytah);
+        Dvere chodbaVytah = new Dvere(chodba, vytah, "", 0);
         chodba.nastavVychod(chodbaVytah);
-        Dvere chodbaSchody = new Dvere(chodba, vytah);
+        Dvere chodbaSchody = new Dvere(chodba, vytah, "", 0);
         chodba.nastavVychod(chodbaSchody);
-        Dvere chodbaBufet = new Dvere(chodba, bufet);
+        IDvere chodbaBufet = new ISICDvere(bufet, chodba, "", 0);
         chodba.nastavVychod(chodbaBufet);
         //kumbal
         kumbal.nastavVychod(kumbalChodba);
         //vytah
         vytah.nastavVychod(chodbaVytah);
-        Dvere vytahAtrium = new Dvere(vytah, atrium);
+        Dvere vytahAtrium = new Dvere(vytah, atrium, "", 0);
         vytah.nastavVychod(vytahAtrium);
         //schody
         schody.nastavVychod(chodbaSchody);
-        Dvere schodyAtrium = new Dvere(schody, atrium);
+        Dvere schodyAtrium = new Dvere(schody, atrium, "", 0);
         schody.nastavVychod(schodyAtrium);
         //atrium
         atrium.nastavVychod(schodyAtrium);
         atrium.nastavVychod(vytahAtrium);
-        Dvere atriumBufet = new Dvere(atrium, bufet);
+        Dvere atriumBufet = new Dvere(atrium, bufet, "", 0);
         atrium.nastavVychod(atriumBufet);
-        Dvere atriumAtomKryt = new Dvere(atrium, bufet);
+        Dvere atriumAtomKryt = new Dvere(atrium, bufet, "", 0);
         atrium.nastavVychod(atriumAtomKryt);
         //atom kryt
         atomKryt.nastavVychod(atriumAtomKryt);
         //vychod terasa
-        Dvere terasaAula = new Dvere(terasa, aula);
+        Dvere terasaAula = new Dvere(terasa, aula, "", 0);
         terasa.nastavVychod(terasaAula);
-        Dvere terasaLabak = new Dvere(terasa, labak);
+        Dvere terasaLabak = new Dvere(terasa, labak, "", 0);
         terasa.nastavVychod(terasaLabak);
-        Dvere terasaBufet= new Dvere(terasa, bufet);
+        Dvere terasaBufet= new Dvere(terasa, bufet, "", 0);
         terasa.nastavVychod(terasaBufet);
         //vychod auly
         aula.nastavVychod(terasaAula);
         //vychod bufet
         bufet.nastavVychod(terasaBufet);
         bufet.nastavVychod(atriumBufet);
-        Dvere bufetWC= new Dvere(bufet, wc);
+        Dvere bufetWC= new Dvere(bufet, wc, "", 0);
         bufet.nastavVychod(bufetWC);
         bufet.nastavVychod(chodbaBufet);
         //wc
         wc.nastavVychod(bufetWC);
         //chill
         chill.nastavVychod(chodbaChill);
-        Dvere chillLabak= new Dvere(chill, labak);
+        Dvere chillLabak= new Dvere(chill, labak, "", 0);
         chill.nastavVychod(chillLabak);
         //vychod labak
         labak.nastavVychod(terasaLabak);
         ZamykatelneDvere labakKancelaria =
-                new ZamykatelneDvere(labak, kancelaria, "kanca");
+                new ZamykatelneDvere(labak, kancelaria, "kanca", "", 0);
         labak.nastavVychod(labakKancelaria);
         labak.nastavVychod(chodbaChill);
         labak.nastavVychod(chillLabak);
@@ -132,6 +135,11 @@ public class Mapa {
         IItemy kluc = new Kluc("kanca", "Kluc od kancelarie", 1);
         itemyVratnice.put(kluc.getNazov(), kluc);
         vratnica.pridajItemy(itemyVratnice);
+        
+        HashMap<String, IItemy> itemyKancelarie = new HashMap<>();
+        IItemy isic = new ISIC("ISIC", "Isic studenta", 1, 500);
+        itemyKancelarie.put(isic.getNazov(), isic);
+        kancelaria.pridajItemy(itemyKancelarie);
     }
     
     public Miestnost getMiestnost(String nazov) {

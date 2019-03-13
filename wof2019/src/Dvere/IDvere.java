@@ -16,4 +16,7 @@ public interface IDvere {
     boolean isOtvorene();
     boolean skusPrejst(Hrac hrac);
     Miestnost dajDruhuMiestnost(Miestnost prva);
+    String getNazov();
+    String getPopis();
+    int getSilaMaterialu();
 }

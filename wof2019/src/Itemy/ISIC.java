@@ -9,15 +9,17 @@ package Itemy;
  *
  * @author kajanek6
  */
-public class Kluc implements IItemy {
+public class ISIC implements IItemy {
     private String nazov;
     private String popis;
     private int cena;
+    private int kredit;
 
-    public Kluc(String nazov, String popis, int cena) {
+    public ISIC(String nazov, String popis, int cena, int kredit) {
         this.nazov = nazov;
         this.popis = popis;
         this.cena = cena;
+        this.kredit = kredit;
     }
 
     @Override
@@ -34,5 +36,16 @@ public class Kluc implements IItemy {
     public int getCena() {
         return cena;
     }
+
+    public int getKredit() {
+        return kredit;
+    }
     
+    public boolean modifikujKredit(int suma) {
+        if (kredit + suma < 0) {
+            return false;
+        }
+        kredit += suma;
+        return true;
+    }
 }
