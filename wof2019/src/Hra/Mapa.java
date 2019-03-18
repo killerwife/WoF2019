@@ -65,64 +65,64 @@ public class Mapa {
         
         // inicializacia miestnosti = nastavenie vychodov
         //vratnica
-        Dvere vratnicaChodba = new Dvere(vratnica, chodba, "", 0);
+        Dvere vratnicaChodba = new Dvere(vratnica, chodba, "Obyčajný rám bez dverí. Hmm, čo sa tu asi stalo ?", 0);
         vratnica.nastavVychod(vratnicaChodba);
         //chodba
-        Dvere kumbalChodba = new Dvere(chodba, kumbal, "", 0);
+        Dvere kumbalChodba = new Dvere(chodba, kumbal, "Dvere z papiera, dufajme ...", 10);
         chodba.nastavVychod(kumbalChodba);
         chodba.nastavVychod(vratnicaChodba);
-        Dvere chodbaChill = new Dvere(chodba, chill, "", 0);
+        Dvere chodbaChill = new Dvere(chodba, chill, "Sklenenné dvere, vídiš cez ne miesto na relax.", 2);
         chodba.nastavVychod(chodbaChill);
-        Dvere chodbaVytah = new Dvere(chodba, vytah, "", 0);
+        Dvere chodbaVytah = new Dvere(chodba, vytah, "Zelezné dvere, ale možno uder do správneho miesta by bol riešením.", 0);
         chodba.nastavVychod(chodbaVytah);
-        Dvere chodbaSchody = new Dvere(chodba, vytah, "", 0);
+        Dvere chodbaSchody = new Dvere(chodba, vytah, "Obycajne dvere", 1);
         chodba.nastavVychod(chodbaSchody);
-        IDvere chodbaBufet = new ISICDvere(bufet, chodba, "", 0);
+        IDvere chodbaBufet = new ISICDvere(bufet, chodba, "Nachystaj si ISIC.", 0);
         chodba.nastavVychod(chodbaBufet);
         //kumbal
         kumbal.nastavVychod(kumbalChodba);
         //vytah
         vytah.nastavVychod(chodbaVytah);
-        Dvere vytahAtrium = new Dvere(vytah, atrium, "", 0);
+        Dvere vytahAtrium = new Dvere(vytah, atrium, "Zelezné dvere, ale možno uder do správneho miesta by bol riešením.", 1000);
         vytah.nastavVychod(vytahAtrium);
         //schody
         schody.nastavVychod(chodbaSchody);
-        Dvere schodyAtrium = new Dvere(schody, atrium, "", 0);
+        Dvere schodyAtrium = new Dvere(schody, atrium, "Klasické drevenne dvere.", 1);
         schody.nastavVychod(schodyAtrium);
         //atrium
         atrium.nastavVychod(schodyAtrium);
         atrium.nastavVychod(vytahAtrium);
-        Dvere atriumBufet = new Dvere(atrium, bufet, "", 0);
+        Dvere atriumBufet = new Dvere(atrium, bufet, "Do bufetu sa len tak nedostanes.", 5);
         atrium.nastavVychod(atriumBufet);
-        Dvere atriumAtomKryt = new Dvere(atrium, bufet, "", 0);
+        Dvere atriumAtomKryt = new Dvere(atrium, bufet, "Ani tank ti nepomoze.", 1000000);
         atrium.nastavVychod(atriumAtomKryt);
         //atom kryt
         atomKryt.nastavVychod(atriumAtomKryt);
         //vychod terasa
-        Dvere terasaAula = new Dvere(terasa, aula, "", 0);
+        Dvere terasaAula = new Dvere(terasa, aula, "Obycane prechodove dvere", 2);
         terasa.nastavVychod(terasaAula);
-        Dvere terasaLabak = new Dvere(terasa, labak, "", 0);
+        Dvere terasaLabak = new Dvere(terasa, labak, "Dvere s olovom, prajem vela stastia", 100);
         terasa.nastavVychod(terasaLabak);
-        Dvere terasaBufet= new Dvere(terasa, bufet, "", 0);
+        Dvere terasaBufet= new Dvere(terasa, bufet, "Do bufetu sa len tak nedostanes", 5);
         terasa.nastavVychod(terasaBufet);
         //vychod auly
         aula.nastavVychod(terasaAula);
         //vychod bufet
         bufet.nastavVychod(terasaBufet);
         bufet.nastavVychod(atriumBufet);
-        Dvere bufetWC= new Dvere(bufet, wc, "", 0);
+        Dvere bufetWC= new Dvere(bufet, wc, "Tieto dvere neprepustia nič.", 50);
         bufet.nastavVychod(bufetWC);
         bufet.nastavVychod(chodbaBufet);
         //wc
         wc.nastavVychod(bufetWC);
         //chill
         chill.nastavVychod(chodbaChill);
-        Dvere chillLabak= new Dvere(chill, labak, "", 0);
+        Dvere chillLabak= new Dvere(chill, labak, "Nezabudni na navleky!", 2);
         chill.nastavVychod(chillLabak);
         //vychod labak
         labak.nastavVychod(terasaLabak);
         ZamykatelneDvere labakKancelaria =
-                new ZamykatelneDvere(labak, kancelaria, "kanca", "", 0);
+                new ZamykatelneDvere(labak, kancelaria, "kanca", "Bez kluca neprejdes.", 0);
         labak.nastavVychod(labakKancelaria);
         labak.nastavVychod(chodbaChill);
         labak.nastavVychod(chillLabak);
