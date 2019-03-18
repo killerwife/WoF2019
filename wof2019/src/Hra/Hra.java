@@ -4,7 +4,7 @@ package Hra;
 import Dvere.IDvere;
 import Dvere.ZamykatelneDvere;
 import Hrac.Hrac;
-import Itemy.IItemy;
+import Itemy.Item;
 import java.util.Random;
 
 /**
@@ -122,6 +122,9 @@ public class Hra  {
             case "pouziKluc":
                 this.pouziKluc(prikaz);
                 return false;
+            case "rubDvere":
+                this.rubDvere();
+                return false;
             default:
                 return false;
         }
@@ -217,7 +220,7 @@ public class Hra  {
             return;
         }
 
-        IItemy item = this.hrac.getAktualnaMiestnost().zoberItem(prikaz.getParameter());
+        Item item = this.hrac.getAktualnaMiestnost().zoberItem(prikaz.getParameter());
         if (item == null) {
             System.out.println("Item sa nenasiel.");
             return;

@@ -1,7 +1,7 @@
 package Hrac;
 
 
-import Itemy.IItemy;
+import Itemy.Item;
 import java.util.HashMap;
 
 /*
@@ -15,28 +15,28 @@ import java.util.HashMap;
  * @author kajanek6
  */
 public class Inventar {
-    private HashMap<String, IItemy> itemy;
+    private HashMap<String, Item> itemy;
 
     public Inventar() {
         this.itemy = new HashMap<>();
     }
     
-    public void vlozItem(IItemy item) {
+    public void vlozItem(Item item) {
         this.itemy.put(item.getNazov(), item);
     }
     
-    public IItemy vyberItem(String nazov) {
+    public Item vyberItem(String nazov) {
         return this.itemy.remove(nazov);
     }
     
     public void vypisItemy() {
         System.out.println("Itemy:");
-        for (IItemy item : itemy.values()) {
+        for (Item item : itemy.values()) {
             System.out.println(item.getNazov() + " :" + item.getPopis());
         }
     }
     
-    public IItemy getItem(String nazov) {
+    public Item getItem(String nazov) {
         return this.itemy.get(nazov);
     }
 }

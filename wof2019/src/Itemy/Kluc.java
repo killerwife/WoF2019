@@ -9,30 +9,11 @@ package Itemy;
  *
  * @author kajanek6
  */
-public class Kluc implements IItemy {
-    private String nazov;
-    private String popis;
-    private int cena;
+public class Kluc extends Item {
 
     public Kluc(String nazov, String popis, int cena) {
-        this.nazov = nazov;
-        this.popis = popis;
-        this.cena = cena;
+        super(nazov, popis, cena);
     }
 
-    @Override
-    public String getNazov() {
-        return nazov;
-    }
-
-    @Override
-    public String getPopis() {
-        return popis;
-    }
-
-    @Override
-    public int getCena() {
-        return cena;
-    }
     
 }

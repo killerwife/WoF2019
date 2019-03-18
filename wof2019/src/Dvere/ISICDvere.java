@@ -32,6 +32,8 @@ public class ISICDvere implements IDvere {
 
     @Override
     public boolean skusPrejst(Hrac hrac) {
+        if (silaMaterialu == 0)
+            return true;
         if (hrac.getAktualnaMiestnost() == gula)
             return hrac.getInventar().getItem("ISIC") != null;
         else return true;
@@ -55,5 +57,12 @@ public class ISICDvere implements IDvere {
     @Override
     public int getSilaMaterialu() {
         return silaMaterialu;
+    }
+    
+    @Override
+    public void znizSiluMaterialu(int silaUderu) {
+        silaMaterialu = Math.max(0, silaMaterialu - silaUderu);
+        if (silaMaterialu == 0)
+            System.out.println("Znicil si ISICove dvere.");
     }
 }

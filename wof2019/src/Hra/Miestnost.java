@@ -2,7 +2,7 @@ package Hra;
 
 
 import Dvere.IDvere;
-import Itemy.IItemy;
+import Itemy.Item;
 import java.util.HashMap;
 
 /**
@@ -21,7 +21,7 @@ public class Miestnost {
     private String nazovMiestnosti;
     private String popisMiestnosti;
     private HashMap<String, IDvere> vychody;
-    private HashMap<String, IItemy> itemy;
+    private HashMap<String, Item> itemy;
     /**
      * Vytvori miestnost popis ktorej je v parametrom.
      * Po vytvoreni miestnost nema ziadne vychody. Popis miesnost strucne 
@@ -74,20 +74,20 @@ public class Miestnost {
         return this.vychody.get(nazovMiestnosti).dajDruhuMiestnost(this);
     }
     
-    public void pridajItemy(HashMap<String, IItemy> itemy) {
+    public void pridajItemy(HashMap<String, Item> itemy) {
         this.itemy = itemy;
     }
     
     public void vypisItemy() {
         if (this.itemy == null)
             return;
-        for (IItemy item : this.itemy.values()) {
+        for (Item item : this.itemy.values()) {
             System.out.print(item.getNazov() + " ");
         }
         System.out.println("");
     }
     
-    public IItemy zoberItem(String nazov) {
+    public Item zoberItem(String nazov) {
         return this.itemy != null ? this.itemy.remove(nazov) : null;
     }
 }

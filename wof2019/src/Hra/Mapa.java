@@ -5,7 +5,7 @@ import Dvere.Dvere;
 import Dvere.IDvere;
 import Dvere.ISICDvere;
 import Dvere.ZamykatelneDvere;
-import Itemy.IItemy;
+import Itemy.Item;
 import Itemy.ISIC;
 import Itemy.Kluc;
 import java.util.HashMap;
@@ -131,13 +131,13 @@ public class Mapa {
         // tajomna komnata
         
         // itemy
-        HashMap<String, IItemy> itemyVratnice = new HashMap<>();
-        IItemy kluc = new Kluc("kanca", "Kluc od kancelarie", 1);
+        HashMap<String, Item> itemyVratnice = new HashMap<>();
+        Item kluc = new Kluc("kanca", "Kluc od kancelarie", 1);
         itemyVratnice.put(kluc.getNazov(), kluc);
         vratnica.pridajItemy(itemyVratnice);
         
-        HashMap<String, IItemy> itemyKancelarie = new HashMap<>();
-        IItemy isic = new ISIC("ISIC", "Isic studenta", 1, 500);
+        HashMap<String, Item> itemyKancelarie = new HashMap<>();
+        Item isic = new ISIC("ISIC", "Isic studenta", 1, 500);
         itemyKancelarie.put(isic.getNazov(), isic);
         kancelaria.pridajItemy(itemyKancelarie);
     }

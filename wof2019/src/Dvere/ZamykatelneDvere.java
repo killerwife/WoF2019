@@ -31,7 +31,7 @@ public class ZamykatelneDvere implements IDvere {
     
     @Override
     public boolean isOtvorene() {
-        return this.isOtvorene;
+        return getSilaMaterialu() == 0 || this.isOtvorene;
     }
 
     @Override
@@ -71,5 +71,12 @@ public class ZamykatelneDvere implements IDvere {
     @Override
     public int getSilaMaterialu() {
         return silaMaterialu;
+    }
+    
+    @Override
+    public void znizSiluMaterialu(int silaUderu) {
+        silaMaterialu = Math.max(0, silaMaterialu - silaUderu);
+        if (silaMaterialu == 0)
+            System.out.println("Znicil si zamykatelne dvere.");
     }
 }

@@ -54,4 +54,11 @@ public class Dvere implements IDvere {
     public int getSilaMaterialu() {
         return silaMaterialu;
     }
+    
+    @Override
+    public void znizSiluMaterialu(int silaUderu) {
+        silaMaterialu = Math.max(0, silaMaterialu - silaUderu);
+        if (silaMaterialu == 0)
+            System.out.println("Zbytocne si rozbil otvorene dvere.");
+    }
 }

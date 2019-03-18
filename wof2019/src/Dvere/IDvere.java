@@ -19,4 +19,5 @@ public interface IDvere {
     String getNazov();
     String getPopis();
     int getSilaMaterialu();
+    void znizSiluMaterialu(int silaUderu);
 }
