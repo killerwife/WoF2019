@@ -5,6 +5,8 @@ import Dvere.IDvere;
 import Dvere.ZamykatelneDvere;
 import Hrac.Hrac;
 import Itemy.Item;
+import Itemy.Sekera;
+import java.util.Collection;
 import java.util.Random;
 
 /**
@@ -123,11 +125,12 @@ public class Hra  {
                 this.pouziKluc(prikaz);
                 return false;
             case "rubDvere":
-                this.rubDvere();
+                this.rubDvere(prikaz);
                 return false;
             default:
                 return false;
         }
+        
     }
 
     // implementacie prikazov:
@@ -141,6 +144,22 @@ public class Hra  {
         System.out.println();
         System.out.println("Mozes pouzit tieto prikazy:");
         NazvyPrikazov.vypisPrikazy();
+        Miestnost miestnost = this.hrac.getAktualnaMiestnost();
+        if (miestnost instanceof IPrikaz) {
+            ((IPrikaz) miestnost).vypisPrikazy();
+        }
+        Collection<IDvere> dvereMiestnosti = miestnost.getVsetkyDvere();
+        for (IDvere dvere : dvereMiestnosti) {
+            if (dvere instanceof IPrikaz) {
+                ((IPrikaz) dvere).vypisPrikazy();
+            }
+        }
+        Collection<Item> itemyHraca = this.hrac.getInventar().getVsetkyItemy();
+        for (Item item : itemyHraca) {
+            if (item instanceof IPrikaz) {
+                ((IPrikaz) item).vypisPrikazy();
+            }
+        }
     }
 
     /** 
@@ -254,5 +273,41 @@ public class Hra  {
             System.out.println("Dvere nie su zamykatelne.");
             return;
         }
+    }
+    
+    private void rubDvere(Prikaz prikaz) {
+        // mam sekeru
+        Item item = this.hrac.getInventar().getItem("sekera");
+        if (item == null) {
+            System.out.println("Hrac nema sekeru.");
+            return;
+        }
+        if (item instanceof Sekera) {
+            Sekera sekera = (Sekera)item;
+            // existuju dvere
+            String nazovDveri = prikaz.getParameter();
+        
+            IDvere dvere = this.hrac.getAktualnaMiestnost().getDvere(nazovDveri);
+            if (dvere == null) {
+                System.out.println("Dvere sa nenasli.");
+                return;
+            }
+            // su rozbite dvere
+            if (dvere.getSilaMaterialu() == 0) {
+                System.out.println("Dvere su uz rozbite.");
+                return;
+            }
+            // zniz silu dveri
+            int zranenie = sekera.getZranenie();
+            dvere.znizSiluMaterialu(zranenie);
+            // pouzi sekeru
+            if (sekera.pouzi()) {
+                // je sekera znicena -> vymaz ju
+                this.hrac.getInventar().vyberItem("sekera");
+            }
+        } else {
+            System.out.println("Hrac ma item co sa vola sekera ale nie je sekerou. Nema sa nikdy stat.");
+            return;
+        }            
     }
 }

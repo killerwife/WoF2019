@@ -2,6 +2,7 @@ package Hrac;
 
 
 import Itemy.Item;
+import java.util.Collection;
 import java.util.HashMap;
 
 /*
@@ -38,5 +39,9 @@ public class Inventar {
     
     public Item getItem(String nazov) {
         return this.itemy.get(nazov);
+    }
+    
+    public Collection<Item> getVsetkyItemy() {
+        return this.itemy.values();
     }
 }

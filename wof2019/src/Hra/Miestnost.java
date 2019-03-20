@@ -3,6 +3,7 @@ package Hra;
 
 import Dvere.IDvere;
 import Itemy.Item;
+import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -89,5 +90,9 @@ public class Miestnost {
     
     public Item zoberItem(String nazov) {
         return this.itemy != null ? this.itemy.remove(nazov) : null;
+    }
+    
+    public Collection<IDvere> getVsetkyDvere() {
+        return this.vychody.values();
     }
 }
