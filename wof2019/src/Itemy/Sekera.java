@@ -5,11 +5,15 @@
  */
 package Itemy;
 
+import Hra.IPrikaz;
+import Hra.Prikaz;
+import Hrac.Hrac;
+
 /**
  *
  * @author kajanek6
  */
-public class Sekera extends Item {
+public class Sekera extends Item implements IPrikaz {
     private int zranenie;
     private int pocetPouziti;
 
@@ -29,5 +33,20 @@ public class Sekera extends Item {
     
     public boolean pouzi() {
         return --pocetPouziti == 0;
+    }
+
+    @Override
+    public boolean pouzi(Prikaz prikaz, Hrac hrac) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean jePrikaz(String nazov) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void vypisPrikazy() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

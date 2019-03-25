@@ -40,8 +40,8 @@ public class Hra  {
      */
     public Hra() {
         this.mapa = new Mapa();
-        this.parser = new Parser();
         this.hrac = new Hrac(this, mapa.getMiestnost("terasa"));
+        this.parser = new Parser(this.hrac);
     }
 
     /**
@@ -124,13 +124,32 @@ public class Hra  {
             case "pouziKluc":
                 this.pouziKluc(prikaz);
                 return false;
-            case "rubDvere":
-                this.rubDvere(prikaz);
-                return false;
-            default:
+            case "rubDvere": this.rubDvere(prikaz); return false;
+            default: break;
+        }
+        Miestnost miestnost = this.hrac.getAktualnaMiestnost();
+        if (miestnost instanceof IPrikaz) {
+            boolean success = ((IPrikaz) miestnost).pouzi(prikaz);
+            if (success)
                 return false;
         }
-        
+        Collection<IDvere> dvereMiestnosti = miestnost.getVsetkyDvere();
+        for (IDvere dvere : dvereMiestnosti) {
+            if (dvere instanceof IPrikaz) {
+                boolean success = ((IPrikaz) dvere).pouzi(prikaz);
+                if (success)
+                    return false;
+            }
+        }
+        Collection<Item> itemyHraca = this.hrac.getInventar().getVsetkyItemy();
+        for (Item item : itemyHraca) {
+            if (item instanceof IPrikaz) {
+                boolean success = ((IPrikaz) item).pouzi(prikaz);
+                if (success)
+                    return false;
+            }
+        }
+        return false;
     }
 
     // implementacie prikazov:
