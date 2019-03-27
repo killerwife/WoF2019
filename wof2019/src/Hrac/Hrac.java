@@ -2,6 +2,7 @@ package Hrac;
 
 import Hra.Hra;
 import Hra.Miestnost;
+import NPC.NPC;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,12 +17,14 @@ import Hra.Miestnost;
 public class Hrac {
     private Hra hra;
     private Miestnost aktualnaMiestnost;
+    private NPC aktualneNPC;
     private Inventar inventar;
 
     public Hrac(Hra hra, Miestnost aktualnaMiestnost) {
         this.hra = hra;
         this.aktualnaMiestnost = aktualnaMiestnost;
         this.inventar = new Inventar();
+        this.aktualneNPC = null;
     }
     
     public Miestnost getAktualnaMiestnost() {
@@ -49,5 +52,13 @@ public class Hrac {
 
     public Inventar getInventar() {
         return inventar;
-    }   
+    }
+
+    public NPC getAktualneNPC() {
+        return aktualneNPC;
+    }
+
+    public void setAktualneNPC(NPC aktualneNPC) {
+        this.aktualneNPC = aktualneNPC;
+    }
 }

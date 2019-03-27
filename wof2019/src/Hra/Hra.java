@@ -121,9 +121,6 @@ public class Hra  {
             case "vypisInventar":
                 this.vypisInventar(prikaz);
                 return false;
-            case "pouziKluc":
-                this.pouziKluc(prikaz);
-                return false;
             case "rubDvere": this.rubDvere(prikaz); return false;
             default: break;
         }
@@ -269,29 +266,6 @@ public class Hra  {
 
     private void vypisInventar(Prikaz prikaz) {
         this.hrac.getInventar().vypisItemy();
-    }
-    
-    private void pouziKluc(Prikaz prikaz) {
-        if (!prikaz.maParameter()) {
-            // ak prikaz nema parameter - druhe slovo - nevedno kam ist
-            System.out.println("Nenapisal si meno dveri.");
-            return;
-        }
-        
-        String nazovDveri = prikaz.getParameter();
-        
-        IDvere dvere = this.hrac.getAktualnaMiestnost().getDvere(nazovDveri);
-        if (dvere == null) {
-            System.out.println("Dvere sa nenasli.");
-            return;
-        }
-        
-        if (dvere instanceof ZamykatelneDvere) {
-            ((ZamykatelneDvere) dvere).pouziKluc(hrac);
-        } else {
-            System.out.println("Dvere nie su zamykatelne.");
-            return;
-        }
     }
     
     private void rubDvere(Prikaz prikaz) {
