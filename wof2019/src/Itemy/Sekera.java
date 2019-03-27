@@ -37,16 +37,16 @@ public class Sekera extends Item implements IPrikaz {
 
     @Override
     public boolean pouzi(Prikaz prikaz, Hrac hrac) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean jePrikaz(String nazov) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return nazov.equals("rubDvere");
     }
 
     @Override
     public void vypisPrikazy() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("rubDvere ");
     }
 }

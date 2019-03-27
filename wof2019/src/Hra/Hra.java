@@ -129,14 +129,14 @@ public class Hra  {
         }
         Miestnost miestnost = this.hrac.getAktualnaMiestnost();
         if (miestnost instanceof IPrikaz) {
-            boolean success = ((IPrikaz) miestnost).pouzi(prikaz);
+            boolean success = ((IPrikaz) miestnost).pouzi(prikaz, this.hrac);
             if (success)
                 return false;
         }
         Collection<IDvere> dvereMiestnosti = miestnost.getVsetkyDvere();
         for (IDvere dvere : dvereMiestnosti) {
             if (dvere instanceof IPrikaz) {
-                boolean success = ((IPrikaz) dvere).pouzi(prikaz);
+                boolean success = ((IPrikaz) dvere).pouzi(prikaz, this.hrac);
                 if (success)
                     return false;
             }
@@ -144,7 +144,7 @@ public class Hra  {
         Collection<Item> itemyHraca = this.hrac.getInventar().getVsetkyItemy();
         for (Item item : itemyHraca) {
             if (item instanceof IPrikaz) {
-                boolean success = ((IPrikaz) item).pouzi(prikaz);
+                boolean success = ((IPrikaz) item).pouzi(prikaz, this.hrac);
                 if (success)
                     return false;
             }
