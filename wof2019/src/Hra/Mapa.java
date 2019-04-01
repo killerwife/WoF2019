@@ -8,6 +8,7 @@ import Dvere.ZamykatelneDvere;
 import Itemy.Item;
 import Itemy.ISIC;
 import Itemy.Kluc;
+import NPC.NPC;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -140,6 +141,9 @@ public class Mapa {
         Item isic = new ISIC("ISIC", "Isic studenta", 1, 500);
         itemyKancelarie.put(isic.getNazov(), isic);
         kancelaria.pridajItemy(itemyKancelarie);
+        
+        NPC vratnik = new NPC("vratnik", "Neotravuj.");
+        vratnica.pridajNPC(vratnik);
     }
     
     public Miestnost getMiestnost(String nazov) {

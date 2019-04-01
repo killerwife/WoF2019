@@ -6,6 +6,7 @@ import Dvere.ZamykatelneDvere;
 import Hrac.Hrac;
 import Itemy.Item;
 import Itemy.Sekera;
+import NPC.NPC;
 import java.util.Collection;
 import java.util.Random;
 
@@ -99,6 +100,11 @@ public class Hra  {
         }
 
         String nazovPrikazu = prikaz.getNazov();
+        NPC aktualneNPC = this.hrac.getAktualneNPC();
+        if (aktualneNPC != null) {
+            aktualneNPC.pouziPrikazNPC(prikaz, hrac);
+            return false;
+        }
         
         switch (nazovPrikazu) {
             case "pomoc":
@@ -138,6 +144,14 @@ public class Hra  {
                     return false;
             }
         }
+        Collection<NPC> npcMiestnosti = miestnost.getVsetkyNPC();
+        for (NPC npc : npcMiestnosti) {
+            if (npc instanceof IPrikaz) {
+                boolean success = ((IPrikaz) npc).pouzi(prikaz, this.hrac);
+                if (success)
+                    return false;
+            }
+        }
         Collection<Item> itemyHraca = this.hrac.getInventar().getVsetkyItemy();
         for (Item item : itemyHraca) {
             if (item instanceof IPrikaz) {
@@ -155,7 +169,7 @@ public class Hra  {
      * Vypise text pomocnika do terminaloveho okna.
      * Text obsahuje zoznam moznych prikazov.
      */
-    private void vypisNapovedu() {
+    private void vypisNapovedu() {        
         System.out.println("Zabludil si. Si sam. Tulas sa po fakulte.");
         System.out.println();
         System.out.println("Mozes pouzit tieto prikazy:");
@@ -168,6 +182,12 @@ public class Hra  {
         for (IDvere dvere : dvereMiestnosti) {
             if (dvere instanceof IPrikaz) {
                 ((IPrikaz) dvere).vypisPrikazy();
+            }
+        }
+        Collection<NPC> npcMiestnosti = miestnost.getVsetkyNPC();
+        for (NPC npc : npcMiestnosti) {
+            if (npc instanceof IPrikaz) {
+                ((IPrikaz) npc).vypisPrikazy();
             }
         }
         Collection<Item> itemyHraca = this.hrac.getInventar().getVsetkyItemy();
@@ -245,6 +265,7 @@ public class Hra  {
     }
 
     private void pozri(Prikaz prikaz) {
+        this.hrac.getAktualnaMiestnost().vypisNPC();
         this.hrac.getAktualnaMiestnost().vypisItemy();
     }
     

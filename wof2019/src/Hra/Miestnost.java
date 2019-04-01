@@ -106,4 +106,16 @@ public class Miestnost {
     public NPC getNPC(String meno) {
         return this.npc.get(meno);
     }
+    
+    public Collection<NPC> getVsetkyNPC() {
+        return this.npc.values();
+    }
+
+    public void vypisNPC() {
+        System.out.print("NPC: ");
+        for (String npc : this.npc.keySet()) {
+            System.out.print(npc + " ");
+        }
+        System.out.println("");
+    }
 }

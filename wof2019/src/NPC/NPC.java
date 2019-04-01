@@ -15,10 +15,12 @@ import Hrac.Hrac;
  */
 public class NPC implements IPrikaz {
     private String nazov;
+    private String privitanie;
     // TODO: prikaz pomoc
 
-    public NPC(String nazov) {
+    public NPC(String nazov, String privitanie) {
         this.nazov = nazov;
+        this.privitanie = privitanie;
     }
 
     public String getNazov() {
@@ -35,6 +37,7 @@ public class NPC implements IPrikaz {
                 return true;
             }
             hrac.setAktualneNPC(npc);
+            npc.vypisPrivitanie();
             npc.vypisPrikazyNPC();
             return true;
         }
@@ -60,6 +63,17 @@ public class NPC implements IPrikaz {
     }
     
     public boolean pouziPrikazNPC(Prikaz prikaz, Hrac hrac) {
+        switch (prikaz.getNazov()) {
+            case "nehovor":
+            {
+                hrac.setAktualneNPC(null);
+                return true;
+            }
+        }
         return false;
+    }
+
+    private void vypisPrivitanie() {
+        System.out.println(privitanie);
     }
 }
