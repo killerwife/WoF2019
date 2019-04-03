@@ -8,7 +8,9 @@ import Dvere.ZamykatelneDvere;
 import Itemy.Item;
 import Itemy.ISIC;
 import Itemy.Kluc;
+import Itemy.Sekera;
 import NPC.NPC;
+import NPC.Predavac;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -144,6 +146,10 @@ public class Mapa {
         
         NPC vratnik = new NPC("vratnik", "Neotravuj.");
         vratnica.pridajNPC(vratnik);
+        
+        Predavac bufetarka = new Predavac("bufetarka", "Zas si tu?");
+        bufetarka.pridajItem(new Sekera("sekera", "", 1, 10, 5));
+        bufet.pridajNPC(bufetarka);
     }
     
     public Miestnost getMiestnost(String nazov) {
