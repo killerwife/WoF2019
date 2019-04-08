@@ -19,12 +19,12 @@ public class Hrac {
     private Hra hra;
     private Miestnost aktualnaMiestnost;
     private NPC aktualneNPC;
-    private Inventar inventar;
+    private InventarHraca inventar;
 
     public Hrac(Hra hra, Miestnost aktualnaMiestnost) {
         this.hra = hra;
         this.aktualnaMiestnost = aktualnaMiestnost;
-        this.inventar = new Inventar();
+        this.inventar = new InventarHraca();
         this.aktualneNPC = null;
     }
     
@@ -51,7 +51,7 @@ public class Hrac {
         return true;
     }
 
-    public Inventar getInventar() {
+    public InventarHraca getInventar() {
         return inventar;
     }
 

@@ -10,19 +10,30 @@ package Itemy;
  * @author kajanek6
  */
 public enum SlotyVybavy {
-    HLAVA,
-    RAMENA,
-    TRUP,
-    PLAST,
-    RUKY,
-    OPASOK,
-    NOHY,
-    TOPANKY,
-    NAVLEKY,
-    NAUSNICE,
-    NAHRDELNIK,
-    PRSTEN,
-    NARAMOK,
-    ZBRAN,
-    SLOT_MAX, // musi byt posledne
+    NIC(""),
+    HLAVA("Hlava"),
+    RAMENA("Ramena"),
+    TRUP("Trup"),
+    PLAST("Plast"),
+    RUKY("Ruky"),
+    OPASOK("Opasok"),
+    NOHY("Nohy"),
+    TOPANKY("Topanky"),
+    NAVLEKY("Navleky"),
+    NAUSNICE("Nausnice"),
+    NAHRDELNIK("Nahrdelnik"),
+    PRSTEN("Prsten"),
+    NARAMOK("Naramok"),
+    ZBRAN("Zbran"),
+    SLOT_MAX(""); // musi byt posledne
+    
+    private String nazovSlotu;
+    
+    SlotyVybavy(String nazov) {
+        this.nazovSlotu = nazov;
+    }
+
+    public String getNazovSlotu() {
+        return nazovSlotu;
+    }
 }

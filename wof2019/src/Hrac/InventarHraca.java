@@ -19,4 +19,30 @@ public class InventarHraca extends Inventar {
     public InventarHraca() {
         this.sloty = new Item[SlotyVybavy.SLOT_MAX.ordinal()];
     }
+    
+    public void oblecItem(Item item) {
+        if (item == null) {
+            System.out.println("Item:OblectItem:Preco toto robis.");
+            return;
+        }
+        vyberItem(item.getNazov());
+        int slot = item.getSlot().ordinal();
+        if (sloty[slot] != null) {
+            Item oblecenie = sloty[slot];
+            this.vlozItem(oblecenie);
+        }
+        sloty[slot] = item;
+    }
+    
+    @Override
+    public void vypisItemy() {
+        for (int i = SlotyVybavy.NIC.ordinal() + 1;
+                i < SlotyVybavy.SLOT_MAX.ordinal(); i++) {
+            Item item = sloty[i];
+            if (item != null)
+                System.out.println(item.getSlot().getNazovSlotu() + ": "
+                + item.getNazov());
+        }
+        super.vypisItemy();
+    }
 }

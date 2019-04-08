@@ -6,6 +6,7 @@ import Dvere.ZamykatelneDvere;
 import Hrac.Hrac;
 import Itemy.Item;
 import Itemy.Sekera;
+import Itemy.SlotyVybavy;
 import NPC.NPC;
 import java.util.Collection;
 import java.util.Random;
@@ -128,6 +129,9 @@ public class Hra  {
                 this.vypisInventar(prikaz);
                 return false;
             case "rubDvere": this.rubDvere(prikaz); return false;
+            case "oblec":
+                this.oblecItem(prikaz);
+                return false;
             default: break;
         }
         Miestnost miestnost = this.hrac.getAktualnaMiestnost();
@@ -323,5 +327,21 @@ public class Hra  {
             System.out.println("Hrac ma item co sa vola sekera ale nie je sekerou. Nema sa nikdy stat.");
             return;
         }            
+    }
+
+    private void oblecItem(Prikaz prikaz) {
+        String nazovItemu = prikaz.getParameter();
+        Item item = this.hrac.getInventar().getItem(nazovItemu);
+        if (item == null) {
+            System.out.println("Item nebol najdeny.");
+            return;
+        }
+        
+        if (item.getSlot() == SlotyVybavy.NIC) {
+            System.out.println("Item sa neda obliect.");
+            return;
+        }
+        this.hrac.getInventar().oblecItem(item);
+        System.out.println("Item " + nazovItemu + " bol obleceny.");
     }
 }

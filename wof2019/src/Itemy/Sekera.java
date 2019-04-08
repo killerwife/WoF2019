@@ -18,7 +18,7 @@ public class Sekera extends Item implements IPrikaz {
     private int pocetPouziti;
 
     public Sekera(String nazov, String popis, int cena, int zranenie, int pocetPouziti) {
-        super(nazov, popis, cena);
+        super(nazov, popis, cena, SlotyVybavy.ZBRAN);
         this.zranenie = zranenie;
         this.pocetPouziti = pocetPouziti;
     }
